@@ -1,8 +1,24 @@
 var userList = [
-	['Rendy Wijaya', 'IT Team', 'Administrator'],
-	['Cristopher Yeremia', 'IT Team', 'Administrator'],
-	['Syahrul Ramadhan', 'IT Team', 'Administrator'],
-	['Ryan Duta Pamungkas', 'IT Team', 'Administrator']
+	{
+		"nama": 'Rendy Wijaya', 
+		"posisi": 'IT Team', 
+		"role": 'Administrator'
+	},
+	{
+		"nama": 'Cristopher Yeremia', 
+		"posisi": 'IT Team', 
+		"role": 'Administrator'
+	},
+	{
+		"nama": 'Syahrul Ramadhan', 
+		"posisi": 'IT Team', 
+		"role": 'Administrator'
+	},
+	{
+		"nama": 'Ryan Duta Pamungkas', 
+		"posisi": 'IT Team', 
+		"role": 'Administrator'
+	}
 ];
 
 //Get User
@@ -12,6 +28,21 @@ $(function() {
 		responsive: true,
 		buttons: [
 			'excel', 'pdf', 'print'
+		],
+		data: userList,
+		columns: [
+			{data: "nama", "targets": 0},
+			{data: "posisi", "targets": 1},
+			{data: "role", "targets": 2},
+			{
+				"data": null, "orderable": false,
+				"render": function(data, type, full, meta) {
+					var actButt = "<center><a class=\"font-bold col-blue tbEdit\" id=\"1\"><i class=\"material-icons\">mode_edit</i></a>";
+					actButt += "<a class=\"font-bold col-red\"><i class=\"material-icons\">delete</i></a></center>";
+
+					return actButt;
+				}, "targets": 3, "width": "10%"
+			}
 		]
 		// ajax: {
 		// 	"url": window.location.href + "/getDataPengguna",
