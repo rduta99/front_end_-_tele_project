@@ -4,7 +4,8 @@ var userList = [
 		"nama": 'Rendy Wijaya', 
 		"nomorHp": "08974870871",
 		"alamat": "Palembang",
-		"ttl": ["Tuban", "9 December 1998"],
+		"tl": "9 December 1998",
+		"tempat": "Tuban",
 		"userTele": "@rduta99",
 		"foto": "",
 		"role": 'Admin'
@@ -14,7 +15,8 @@ var userList = [
 		"nama": 'Cristopher Yeremia', 
 		"nomorHp": "08974870871",
 		"alamat": "Palembang",
-		"ttl": ["Tuban", "9 December 1998"],
+		"tl": "9 December 1998",
+		"tempat": "Tuban",
 		"userTele": "@rduta99",
 		"foto": "",
 		"role": 'Admin'
@@ -24,7 +26,8 @@ var userList = [
 		"nama": 'Syahrul Ramadhan', 
 		"nomorHp": "08974870871",
 		"alamat": "Palembang",
-		"ttl": ["Tuban", "9 December 1998"],
+		"tl": "9 December 1998",
+		"tempat": "Tuban",
 		"userTele": "@rduta99",
 		"foto": "",
 		"role": 'Admin'
@@ -34,7 +37,8 @@ var userList = [
 		"nama": 'Ryan Duta Pamungkas', 
 		"nomorHp": "08974870871",
 		"alamat": "Palembang",
-		"ttl": ["Tuban", "9 December 1998"],
+		"tl": "9 December 1998",
+		"tempat": "Tuban",
 		"userTele": "@rduta99",
 		"foto": "",
 		"role": 'Admin'
@@ -103,16 +107,45 @@ $(document).ready(function() {
 			$('#defaultModal').modal('hide');
 			swal({
 		        title: "Tunggu Sebentar",
-		        text: "Tunggu Sebentar",
+		        text: "Menginput Data",
 		        showConfirmButton: false,
 		        allowEscapeKey: false,
 	    		allowOutsideClick: false,
 	    		allowEnterKey: false,
 		        timer: 1000
 		    }, function () {
+		    	//Search for existing data
+		    	var userData = $('#userDetail').serializeArray();
+		    	var cek = true;
+		    	var data = {};
+
+		    	//Change formArray to dataArray
+		    	for (var i = 0; i < userData.length; i++) {
+					// data[Object.keys(userData[i])[0]] = userData[i][Object.keys(userData[i])[1]];
+					data[userData[i][Object.keys(userData[i])[0]]] = userData[i][Object.keys(userData[i])[1]];
+				}
+
+		    	var message = "Data berhasil disimpan";
+		    	for (var i = 0; i < userList.length; i++) {
+					if(userList[i].nik == data.nik) {
+						userList[i] = data;
+						message = "Data berhasil diubah";
+						cek = false;
+					}
+				}
+
+				//Input Data
+				if(cek) {
+					userList.push(data);
+				}
+
+				tbData.clear();
+	          	tbData.rows.add(userList);
+	          	tbData.draw();
+				console.log(userList);
 
 		        setTimeout(function () {
-		            swal("Data berhasil ditambahkan", "", "success");
+		            swal(message, "", "success");
 		        }, 2000);
 		    });
 		}
@@ -161,7 +194,7 @@ function format( d ) {
         '</tr>'+
         '<tr>'+
             '<td style="width: 25%">Tempat, Tanggal Lahir</td>'+
-            '<td>'+d.ttl[0]+', '+d.ttl[1]+'</td>'+
+            '<td>'+d.tempat+', '+d.tl+'</td>'+
         '</tr>'+
         '<tr>'+
             '<td style="width: 25%">Alamat</td>'+
@@ -191,8 +224,8 @@ function editData(nik) {
 	init_elem('nik', data.nik);
 	init_elem('nama', data.nama);
 	init_elem('alamat', data.alamat);
-	init_elem('tempat', data.ttl[0]);
-	init_elem('tl', data.ttl[1]);
+	init_elem('tempat', data.tempat);
+	init_elem('tl', data.tl);
 	init_elem('alamat', data.alamat);
 	init_elem('nomorHp', data.nomorHp);
 	init_elem('userTele', data.userTele);
