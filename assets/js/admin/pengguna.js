@@ -1,3 +1,9 @@
+var userList = [
+	['Rendy Wijaya', 'IT Team', 'Administrator'],
+	['Cristopher Yeremia', 'IT Team', 'Administrator'],
+	['Syahrul Ramadhan', 'IT Team', 'Administrator'],
+	['Ryan Duta Pamungkas', 'IT Team', 'Administrator']
+];
 
 //Get User
 $(function() {
@@ -6,16 +12,16 @@ $(function() {
 		responsive: true,
 		buttons: [
 			'excel', 'pdf', 'print'
-		],
-		ajax: {
-			"url": window.location.href + "/getDataPengguna",
-			"type": "GET"
-		},
-		"columnDef": [
-			{"data": , "targets": 0},
-			{"data": , "targets": 0},
-			{"data": , "targets": 0},
 		]
+		// ajax: {
+		// 	"url": window.location.href + "/getDataPengguna",
+		// 	"type": "GET"
+		// },
+		// "columnDef": [
+		// 	{"data": , "targets": 0},
+		// 	{"data": , "targets": 0},
+		// 	{"data": , "targets": 0},
+		// ]
 	});
 });
 
