@@ -2363,7 +2363,10 @@
 
 /* General ===================================== */
 body {
-  background-color: #e9e9e9;
+  background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('../images/bg.jpg');
+  background-size: contain;
+  background-position: center;
+  background-attachment: fixed;
   -moz-transition: all 0.5s;
   -o-transition: all 0.5s;
   -webkit-transition: all 0.5s;
@@ -7536,10 +7539,11 @@ fieldset[disabled] .form-control {
     position: absolute;
     bottom: 0;
     width: 100%;
-    border-top: 1px solid #eee;
+    /*border-top: 1px solid #eee;*/
     padding: 15px;
     overflow: hidden; }
     .sidebar .legal .copyright {
+      color: #fafafa;
       font-size: 13px;
       white-space: nowrap;
       -ms-text-overflow: ellipsis;
@@ -7551,6 +7555,7 @@ fieldset[disabled] .form-control {
         text-decoration: none; }
     .sidebar .legal .version {
       white-space: nowrap;
+      color: #fafafa;
       -ms-text-overflow: ellipsis;
       -o-text-overflow: ellipsis;
       text-overflow: ellipsis;
@@ -7562,7 +7567,9 @@ fieldset[disabled] .form-control {
     white-space: nowrap;
     position: relative;
     border-bottom: 1px solid #e9e9e9;
-    background: url("../images/user-img-background.jpg") no-repeat no-repeat;
+    background: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url("../images/bg.jpg") no-repeat no-repeat;
+    background-position: center;
+    background-size: cover;
     height: 135px; }
     .sidebar .user-info .image {
       margin-right: 12px;
