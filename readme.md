@@ -1,6 +1,6 @@
 ## Front End Tele Project v1.0.0
 
-**Demo :** [Kunjungi laman ini](https://rduta99.github.io/front_end_-_tele_project/)
+**Demo :** [Click Here](https://rduta99.github.io/front_end_-_tele_project/)
 
 **List user  :**
 > Username dan Password sama
@@ -15,6 +15,7 @@
    - Hapus Pengguna
    - Edit Pengguna
    - Lihat Pengguna
+   - Detail Pengguna
 
 > Fitur yang lain segera ditambah
 
