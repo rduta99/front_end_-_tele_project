@@ -99,6 +99,8 @@ $(document).ready(function() {
 	$('#addUser').click(function() {
 		$('#defaultModal').modal('show');
 		$('#userDetail').trigger('reset');
+		$('#defaultModalLabel').text('Tambah Pengguna');
+		$('#submitUser').text('Tambah Pengguna');
 		$('input').parent().removeClass('focused');
 	});
 
@@ -151,6 +153,31 @@ $(document).ready(function() {
 		}
 	});
 
+	$('#userData tbody').on('click', '.deleteData', function() {
+		var nik = $(this).attr('id');
+		swal({
+	        title: "Anda Yakin?",
+	        text: "Data akan dihapus",
+	        type: "warning",
+	        showCancelButton: true,
+	        confirmButtonColor: "#DD6B55",
+	        confirmButtonText: "Ya, saya yakin",
+	        closeOnConfirm: false
+	    }, function () {
+	    	for (var i = 0; i < userList.length; i++) {
+				if(userList[i].nik == nik) {
+					userList.splice(i, 1);
+					break;
+				}
+			}
+
+			tbData.clear();
+	      	tbData.rows.add(userList);
+	      	tbData.draw();
+	        swal("Deleted!", "Your imaginary file has been deleted.", "success");
+	    });
+	});
+
 	$('.datepicker').bootstrapMaterialDatePicker({
 	    format: 'DD MMMM YYYY',
 	    clearButton: true,
@@ -180,7 +207,7 @@ function format( d ) {
 		'<tr>'+
             '<td style="width: 10%" colspan="2">'+
             '<h4 style="display: inline-block; top: 10px;"><b>Detail Pengguna</b></h4>'+
-            '<button class="btn bg-red waves-effect pull-right"><i class="material-icons">delete</i></button>'+
+            '<button id="'+d.nik+'" class="btn bg-red waves-effect pull-right deleteData"><i class="material-icons">delete</i></button>'+
             '<button onclick="editData('+d.nik+')" class="btn bg-blue waves-effect pull-right" style="margin-right:10px;"><i class="material-icons">edit</i></button>'+
             '</td>'+
         '</tr>'+
@@ -220,21 +247,26 @@ function editData(nik) {
 		}
 	}
 	$('#defaultModalLabel').text('Edit Pengguna');
+	$('#submitUser').text('Simpan Perubahan');
 	// var data = tbData.row($(this).parents('tr')).data();
-	init_elem('nik', data.nik);
-	init_elem('nama', data.nama);
-	init_elem('alamat', data.alamat);
-	init_elem('tempat', data.tempat);
-	init_elem('tl', data.tl);
-	init_elem('alamat', data.alamat);
-	init_elem('nomorHp', data.nomorHp);
-	init_elem('userTele', data.userTele);
-	init_elem('role', data.role);
+	init_elem('#nik', data.nik);
+	init_elem('#nama', data.nama);
+	init_elem('#alamat', data.alamat);
+	init_elem('#tempat', data.tempat);
+	init_elem('#tl', data.tl);
+	init_elem('#alamat', data.alamat);
+	init_elem('#nomorHp', data.nomorHp);
+	init_elem('#userTele', data.userTele);
+	init_elem('#role', data.role);
 	$('#defaultModal').modal('show');
 }
 
 function init_elem(id, val) {
-	$('#'+id).val(val).parent().addClass('focused');
+	if(id != '#role') {
+		$(id).val(val).parent().addClass('focused');
+	} else {
+		$('select'+id+' option[value="'+val+'"]').attr('selected', 'selected');
+	}
 }
 
 function cekForm() {
